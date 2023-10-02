@@ -6,6 +6,8 @@ import com.authservice.entity.User;
 import com.authservice.repository.UserRepository;
 import com.authservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,22 @@ public class DefaultUserService implements UserService {
         userDto.setEmail(users.getEmail());
         userDto.setName(users.getName());
         userDto.setPhone(users.getPhone());
+        findByEmail(users.getEmail());
         return userDto;
+    }
+
+    private void findByEmail(String email) {
+    }
+
+    @Override
+    public UserDto findByEmail(UserRequest email) {
+        return null;
+    }
+
+    private ResponseEntity<?> RegisteredEmail(String email){
+        if (email == null){
+            return new ResponseEntity<>("User does not have an email", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(email,HttpStatus.OK);
     }
 }

@@ -33,5 +33,13 @@ public class UserController {
         return new ResponseEntity<>(userdto,HttpStatus.ACCEPTED);
     }
 
+    public String findByEmail(@RequestBody UserRequest email){
+        UserDto user = userService.findByEmail(email);
+            if (user == null){
+                return String.valueOf(new ResponseEntity<>("Email not found", HttpStatus.BAD_REQUEST));
+            }
+        return "success";
+    }
+
 
 }

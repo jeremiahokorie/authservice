@@ -6,4 +6,6 @@ import com.authservice.entity.User;
 
 public interface UserService {
     UserDto create(UserRequest user);
+
+    UserDto findByEmail(UserRequest email);
 }
